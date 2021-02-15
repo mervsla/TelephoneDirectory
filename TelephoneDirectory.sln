@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectory.UserServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectory.UserService.PresentationLayer", "TelephoneDirectory.UserService.PresentationLayer\TelephoneDirectory.UserService.PresentationLayer.csproj", "{474C6993-89E8-42B9-B8C2-DE9A6B7603BD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{67FA974C-ABF0-463B-8188-F300C85D5F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectory.UI", "TelephoneDirectory.UI\TelephoneDirectory.UI.csproj", "{A6769C40-746E-4199-9161-3F3FB778E6CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{474C6993-89E8-42B9-B8C2-DE9A6B7603BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{474C6993-89E8-42B9-B8C2-DE9A6B7603BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{474C6993-89E8-42B9-B8C2-DE9A6B7603BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6769C40-746E-4199-9161-3F3FB778E6CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6769C40-746E-4199-9161-3F3FB778E6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6769C40-746E-4199-9161-3F3FB778E6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6769C40-746E-4199-9161-3F3FB778E6CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +51,7 @@ Global
 		{8F71BA9B-4751-4671-92AE-44645850D649} = {7B70F5F2-038D-4915-8921-B2F9467917EF}
 		{FC5A9EE0-732C-4215-9503-9736A2CFE693} = {7B70F5F2-038D-4915-8921-B2F9467917EF}
 		{474C6993-89E8-42B9-B8C2-DE9A6B7603BD} = {7B70F5F2-038D-4915-8921-B2F9467917EF}
+		{A6769C40-746E-4199-9161-3F3FB778E6CC} = {67FA974C-ABF0-463B-8188-F300C85D5F7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17791D6B-C507-4B04-A8AD-5B25E736908E}

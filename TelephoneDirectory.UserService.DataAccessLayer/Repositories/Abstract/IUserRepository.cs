@@ -8,6 +8,8 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Abstract
     public interface IUserRepository : IRepository<User>
     {
         void AddUser(User user);
-        //Guid getUserIdByMail(string email);
+        User getUserByUserId(Guid userId);
+        void DeleteUser(User user);
+        List<User> getAllUsers();
     }
 }

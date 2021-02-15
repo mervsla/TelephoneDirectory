@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TelephoneDirectory.UserService.BusinessLayer.DTO
+namespace TelephoneDirectory.UserService.BusinessLayer.DTOs
 {
-   public class UserContactDto
+    public class UserDto
     {
+        public UserDto()
+        {
+            contactDtos = new List<ContactDto>();
+        }
         public Guid UserID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string CompanyName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
+        public ICollection<ContactDto> contactDtos { get; set; }
     }
 }

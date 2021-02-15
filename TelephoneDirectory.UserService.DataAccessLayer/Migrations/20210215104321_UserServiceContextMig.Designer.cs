@@ -10,16 +10,16 @@ using TelephoneDirectory.UserService.DataAccessLayer.USContext;
 namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
 {
     [DbContext(typeof(UserServiceContext))]
-    [Migration("20210215093952_UserServiceContextMig")]
+    [Migration("20210215104321_UserServiceContextMig")]
     partial class UserServiceContextMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.3")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.11")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("TelephoneDirectory.UserService.DataAccessLayer.Entities.Contact", b =>
                 {
@@ -44,7 +44,7 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Contact", "public");
+                    b.ToTable("Contact","public");
                 });
 
             modelBuilder.Entity("TelephoneDirectory.UserService.DataAccessLayer.Entities.User", b =>
@@ -64,7 +64,7 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("User", "public");
+                    b.ToTable("User","public");
                 });
 
             modelBuilder.Entity("TelephoneDirectory.UserService.DataAccessLayer.Entities.Contact", b =>
@@ -74,13 +74,6 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TelephoneDirectory.UserService.DataAccessLayer.Entities.User", b =>
-                {
-                    b.Navigation("contacts");
                 });
 #pragma warning restore 612, 618
         }

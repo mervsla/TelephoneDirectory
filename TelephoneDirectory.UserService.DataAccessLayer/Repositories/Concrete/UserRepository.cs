@@ -22,7 +22,22 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Concrete
             _context.Users.Add(user);
         }
 
-       
+        public void DeleteUser(User user)
+        {
+            _context.Users.Remove(user);
+        }
+
+        public User getUserByUserId(Guid userId)
+        {
+            return _context.Users.Where(x => x.ID == userId).FirstOrDefault();
+        }
+
+        public List<User> getAllUsers()
+        {
+            return _context.Users.ToList();
+        }
+
+        
     }
 
 

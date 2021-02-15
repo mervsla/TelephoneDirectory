@@ -16,10 +16,10 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
                 schema: "public",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Surname = table.Column<string>(type: "text", nullable: true),
-                    CompanyName = table.Column<string>(type: "text", nullable: true)
+                    ID = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Surname = table.Column<string>(nullable: true),
+                    CompanyName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,12 +31,12 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
                 schema: "public",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    Address = table.Column<string>(type: "text", nullable: true),
-                    UserID = table.Column<Guid>(type: "uuid", nullable: false)
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    UserID = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
