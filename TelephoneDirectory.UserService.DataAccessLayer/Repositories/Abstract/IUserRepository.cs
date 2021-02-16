@@ -11,5 +11,6 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Abstract
         User getUserByUserId(Guid userId);
         void DeleteUser(User user);
         List<User> getAllUsers();
+      
     }
 }

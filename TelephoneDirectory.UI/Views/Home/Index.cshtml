@@ -21,7 +21,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Add Person</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" id="closeBtn" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
@@ -71,7 +71,8 @@
 
                     </tr>
                 </thead>
-                <tbody id="ptableBody">
+                <tbody>
+
                 </tbody>
             </table>
 
@@ -85,7 +86,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Add Contact Information</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" id="closeBtn" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
@@ -101,9 +102,11 @@
                                         <th>PHONE NUMBER</th>
                                         <th>EMAIL</th>
                                         <th>ADDRESS</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
-                                <tbody id="CtableBody">
+                                <tbody>
+
                                 </tbody>
                             </table>
 
@@ -134,7 +137,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Add Contact Information</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" id="closeBtn" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
@@ -240,7 +243,6 @@
                 contentType: "application/json; charset-utf-8",
                 data: JSON.stringify({ 'PhoneNumber': PhoneNumber, 'Email': Email, 'Address': Address, 'UserID': UserID }),
                 success: function (data) {
-                    console.log("Contact Added");
                 }
             });
         });
@@ -258,9 +260,9 @@
                 contentType: "application/json; charset-utf-8",
                 data: JSON.stringify({ 'Name': Name, 'Surname': Surname, 'CompanyName': CompanyName }),
                 success: function (data) {
-                    
-                    console.log("Person Added");
+
                     window.location.reload();
+                    
                 }
             });
         });
@@ -296,9 +298,16 @@
                         data: data,
 
                         "columns": [
-                            { data: "email", "autoWidth": true },
-                            { data: "address", "autoWidth": true },
                             { data: "phoneNumber", "autoWidth": true },
+                            { data: "email", "autoWidth": true },
+                            { data: "address", "autoWidth": true }
+                            ,
+                            {
+                                "render": function (data, type, row) {
+                                    return "<a  class='btn btn-danger' onclick=DeleteContact('" + row.userID + "')>Delete</a > ";
+                                }
+                            }
+                           
 
                         ]
 
@@ -319,12 +328,25 @@
             data: JSON.stringify({ 'UserID': userId }),
             success: function (data) {
                 window.location.reload();
-                console.log("ready!");
             }
         });
     }
 
+    function DeleteContact(userId) {
 
+
+        $.ajax({
+            type: "POST",
+            url: "https://localhost:44394/userservice/deletecontact",
+            datatype: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ 'UserID': userId }),
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+
+    }
  
 
 

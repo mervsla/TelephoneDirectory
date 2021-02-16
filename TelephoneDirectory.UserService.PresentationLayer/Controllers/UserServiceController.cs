@@ -40,6 +40,13 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
             userManager.DeleteUser(userDto.UserID);
            
         }
+
+
+        public void DeleteContact(ContactDto contactDto)
+        {
+            contactManager.DeleteContact(contactDto.UserID);
+        }
+
         [HttpPost]
         public void AddContact(ContactDto contactDto)
         {
@@ -55,10 +62,7 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
         [HttpPost]
         public List<ContactDto> GetContact(ContactDto contactDto)
         {
-            List<ContactDto> contact = new List<ContactDto>();
-            contact.Add(contactManager.getContactByUserId(contactDto.UserID));
-               
-            return contact;
+            return contactManager.getAllContactsById(contactDto.UserID);
         }
 
     }

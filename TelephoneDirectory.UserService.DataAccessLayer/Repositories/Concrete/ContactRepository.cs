@@ -43,5 +43,10 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Concrete
             return _ccontext.Contacts.ToList();
         }
 
+
+        public List<Contact> GetAllContactsById(Guid userId)
+        {
+            return _ccontext.Contacts.ToList();
+        }
     }
 }

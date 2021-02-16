@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TelephoneDirectory.UserService.BusinessLayer.DTOs;
 using TelephoneDirectory.UserService.DataAccessLayer.Entities;
@@ -49,15 +50,38 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
 
         public ContactDto getContactByUserId(Guid userId)
         {
-            ContactDto contactDto= ConvertToContactDto(uow.ContactRepository.getContactByUserId(userId));
+            ContactDto contactDto = ConvertToContactDto(uow.ContactRepository.getContactByUserId(userId));
             return contactDto;
 
         }
+
+        public List<ContactDto> getAllContactsById(Guid userId)
+        {
+            List<ContactDto> contacts = uow.ContactRepository.GetAllContactsById(userId).Where(x=>x.UserID==userId).Select(y => new ContactDto
+            {
+
+                ID = y.ID,
+                Email = y.Email,
+                PhoneNumber = y.PhoneNumber,
+                Address = y.Address,
+                UserID = y.UserID
+
+
+            }).ToList();
+
+            return contacts;
+
+
+        }
+
+
         public void DeleteContact(Guid userId)
         {
             Contact contact = uow.ContactRepository.getContactByUserId(userId);
             uow.ContactRepository.DeleteContact(contact);
             uow.Save();
         }
+
+       
     }
 }

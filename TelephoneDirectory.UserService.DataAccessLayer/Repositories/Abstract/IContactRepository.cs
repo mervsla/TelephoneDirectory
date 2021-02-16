@@ -11,5 +11,6 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Abstract
         Contact getContactByUserId(Guid userId);
         void DeleteContact(Contact contact);
         List<Contact> getAllContacts();
+        List<Contact> GetAllContactsById(Guid userId);
     }
 }
