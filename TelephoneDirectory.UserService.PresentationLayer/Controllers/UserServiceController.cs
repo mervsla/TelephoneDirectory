@@ -33,11 +33,11 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
             userDto.UserID = guid;
             userManager.AddUser(userDto);
         }
-        [HttpDelete]
-        public void DeleteUser(Guid userId)
+        [HttpPost]
+        public void DeleteUser(UserDto userDto)
         {
-            contactManager.DeleteContact(userId);
-            userManager.DeleteUser(userId);
+            contactManager.DeleteContact(userDto.UserID);
+            userManager.DeleteUser(userDto.UserID);
            
         }
         [HttpPost]
@@ -46,11 +46,20 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
             contactManager.AddContact(contactDto);
         }
 
+        [HttpGet]
         public List<UserDto> getAllUsersContacts()
         {
-            return userManager.getAllUsersContacts();
+            List<UserDto> listusers= userManager.getAllUsersContacts();
+            return listusers;
         }
-
+        [HttpPost]
+        public List<ContactDto> GetContact(ContactDto contactDto)
+        {
+            List<ContactDto> contact = new List<ContactDto>();
+            contact.Add(contactManager.getContactByUserId(contactDto.UserID));
+               
+            return contact;
+        }
 
     }
 }

@@ -10,31 +10,31 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Concrete
 {
     public class UserRepository : Repository<User>,IUserRepository
     {
-        private UserServiceContext _context;
+        private UserServiceContext _ucontext;
         public UserRepository(UserServiceContext context) : base(context)
         {
-            _context = context;
+            _ucontext = context;
         }
 
 
         public void AddUser(User user)
         {
-            _context.Users.Add(user);
+            _ucontext.Users.Add(user);
         }
 
         public void DeleteUser(User user)
         {
-            _context.Users.Remove(user);
+            _ucontext.Users.Remove(user);
         }
 
         public User getUserByUserId(Guid userId)
         {
-            return _context.Users.Where(x => x.ID == userId).FirstOrDefault();
+            return _ucontext.Users.Where(x => x.ID == userId).FirstOrDefault();
         }
 
         public List<User> getAllUsers()
         {
-            return _context.Users.ToList();
+            return _ucontext.Users.ToList();
         }
 
         

@@ -9,5 +9,6 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
     {
         void AddContact(ContactDto contactDto);
         void DeleteContact(Guid userId);
+        ContactDto getContactByUserId(Guid userId);
     }
 }

@@ -11,27 +11,36 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Concrete
    
     public class ContactRepository : Repository<Contact>, IContactRepository
     {
-        private UserServiceContext _context;
+        private UserServiceContext _ccontext;
         public ContactRepository(UserServiceContext context) : base(context)
         {
-            _context = context;
+            _ccontext = context;
         }
 
         public void AddContact(Contact contact)
         {
-            _context.Contacts.Add(contact);
+            _ccontext.Contacts.Add(contact);
         }
         public Contact getContactByUserId(Guid userId)
         {
-            return _context.Contacts.Where(x => x.UserID == userId).FirstOrDefault();
+                Contact contact = _ccontext.Contacts.FirstOrDefault(x => x.UserID == userId);
+                return contact;
         }
         public void DeleteContact(Contact contact)
         {
-            _context.Contacts.Remove(contact);
+            try
+            {
+                _ccontext.Contacts.Remove(contact);
+            }
+            catch
+            {
+                
+            }
+            
         }
         public List<Contact> getAllContacts()
         {
-            return _context.Contacts.ToList();
+            return _ccontext.Contacts.ToList();
         }
 
     }

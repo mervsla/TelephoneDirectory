@@ -8,7 +8,7 @@ using TelephoneDirectory.UserService.DataAccessLayer.USContext;
 
 namespace TelephoneDirectory.UserService.BusinessLayer.Managers
 {
-  public class ContactManager:IContactManager
+    public class ContactManager : IContactManager
     {
         UnitOfWork uow = new UnitOfWork(new UserServiceContext());
         public Contact ConvertToContact(ContactDto contactDto)
@@ -21,7 +21,25 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
 
             return contact;
         }
+        public ContactDto ConvertToContactDto(Contact contact)
+        {
+            ContactDto contactDto = new ContactDto();
+            try
+            {
 
+                contactDto.UserID = contact.UserID;
+                contactDto.PhoneNumber = contact.PhoneNumber;
+                contactDto.Email = contact.Email;
+                contactDto.Address = contact.Address;
+            }
+            catch
+            {
+                contactDto = null;
+            }
+           
+
+            return contactDto;
+        }
         public void AddContact(ContactDto contactDto)
         {
             Contact contact = ConvertToContact(contactDto);
@@ -29,6 +47,12 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
             uow.Save();
         }
 
+        public ContactDto getContactByUserId(Guid userId)
+        {
+            ContactDto contactDto= ConvertToContactDto(uow.ContactRepository.getContactByUserId(userId));
+            return contactDto;
+
+        }
         public void DeleteContact(Guid userId)
         {
             Contact contact = uow.ContactRepository.getContactByUserId(userId);
