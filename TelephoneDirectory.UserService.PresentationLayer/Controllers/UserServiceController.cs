@@ -36,7 +36,7 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
         [HttpPost]
         public void DeleteUser(UserDto userDto)
         {
-            contactManager.DeleteContact(userDto.UserID);
+            contactManager.DeleteContactByUserId(userDto.UserID);
             userManager.DeleteUser(userDto.UserID);
            
         }
@@ -44,7 +44,7 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
 
         public void DeleteContact(ContactDto contactDto)
         {
-            contactManager.DeleteContact(contactDto.UserID);
+            contactManager.DeleteContact(contactDto.ID);
         }
 
         [HttpPost]

@@ -9,6 +9,7 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Abstract
     {
         void AddContact(Contact contact);
         Contact getContactByUserId(Guid userId);
+        Contact getContactById(int contactId);
         void DeleteContact(Contact contact);
         List<Contact> getAllContacts();
         List<Contact> GetAllContactsById(Guid userId);

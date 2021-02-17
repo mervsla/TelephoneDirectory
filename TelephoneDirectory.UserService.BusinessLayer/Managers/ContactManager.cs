@@ -75,13 +75,18 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
         }
 
 
-        public void DeleteContact(Guid userId)
+        public void DeleteContact(int contactId)
+        {
+            Contact contact = uow.ContactRepository.getContactById(contactId);
+            uow.ContactRepository.DeleteContact(contact);
+            uow.Save();
+        }
+        public void DeleteContactByUserId(Guid userId)
         {
             Contact contact = uow.ContactRepository.getContactByUserId(userId);
             uow.ContactRepository.DeleteContact(contact);
             uow.Save();
         }
 
-       
     }
 }

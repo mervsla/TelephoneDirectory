@@ -21,7 +21,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Add Person</h4>
-                        <button type="button" id="closeBtn" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
@@ -86,7 +86,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Add Contact Information</h4>
-                        <button type="button" id="closeBtn" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button"  class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
@@ -165,6 +165,7 @@
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="AddContactBtn" data-dismiss="modal">Add</button>
+                        <div id="personId" style="visibility:hidden"></div>
                     </div>
 
                 </div>
@@ -213,7 +214,7 @@
                         ,
                         {
                             "render": function (data, type, row) {
-                                return "<a class='btn btn-primary' id='" + row.UserID + "'   data-toggle='modal' data-target='#addContactModal'>Add Contact Info</a>";
+                                return "<a class='btn btn-primary' onclick=AddPerson('" + row.userID + "')  data-toggle='modal' data-target='#addContactModal'>Add Contact Info</a>";
                             }
                         }
                         ,
@@ -234,8 +235,8 @@
             var PhoneNumber = $("#phoneNumber").val();
             var Email = $("#email").val();
             var Address = $("#address").val();
-            var UserID = $(this).attr("id");
-            debugger;
+            var UserID = document.getElementById("personId").innerHTML;
+          
             $.ajax({
                 type: "POST",
                 url: "https://localhost:44394/userservice/addcontact",
@@ -243,8 +244,10 @@
                 contentType: "application/json; charset-utf-8",
                 data: JSON.stringify({ 'PhoneNumber': PhoneNumber, 'Email': Email, 'Address': Address, 'UserID': UserID }),
                 success: function (data) {
+                    window.location.reload();
                 }
             });
+
         });
 
 
@@ -270,18 +273,20 @@
 
 
 
-
-
-
         $("#closeBtn").click(function () {
             window.location.reload();
         });
 
 
 
-
     });
 
+
+
+    function AddPerson(id) {
+        document.getElementById('personId').innerHTML = id;
+        
+    }
 
     function GetContact(userId) {
         $.ajax({
@@ -304,7 +309,7 @@
                             ,
                             {
                                 "render": function (data, type, row) {
-                                    return "<a  class='btn btn-danger' onclick=DeleteContact('" + row.userID + "')>Delete</a > ";
+                                    return "<a  class='btn btn-danger' onclick=DeleteContact('" + row.id + "')>Delete</a > ";
                                 }
                             }
                            
@@ -332,15 +337,15 @@
         });
     }
 
-    function DeleteContact(userId) {
-
-
+    function DeleteContact(id) {
+        var ID = Number(id);
+        
         $.ajax({
             type: "POST",
             url: "https://localhost:44394/userservice/deletecontact",
             datatype: "json",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ 'UserID': userId }),
+            data: JSON.stringify({ 'ID': ID }),
             success: function (data) {
                 window.location.reload();
             }

@@ -26,6 +26,11 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Concrete
                 Contact contact = _ccontext.Contacts.FirstOrDefault(x => x.UserID == userId);
                 return contact;
         }
+        public Contact getContactById(int contactId)
+        {
+            Contact contact = _ccontext.Contacts.FirstOrDefault(x => x.ID == contactId);
+            return contact;
+        }
         public void DeleteContact(Contact contact)
         {
             try

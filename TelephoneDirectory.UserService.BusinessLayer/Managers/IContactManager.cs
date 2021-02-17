@@ -8,7 +8,8 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
     public interface IContactManager
     {
         void AddContact(ContactDto contactDto);
-        void DeleteContact(Guid userId);
+        void DeleteContact(int contactId);
+        void DeleteContactByUserId(Guid userId);
         ContactDto getContactByUserId(Guid userId);
         List<ContactDto> getAllContactsById(Guid userId);
     }
