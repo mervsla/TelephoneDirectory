@@ -88,5 +88,13 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
             uow.Save();
         }
 
+
+
+        public List<int> PersonPhoneCount(string address)
+        {
+           return uow.ContactRepository.PersonPhoneCount(address);
+        }
+
+
     }
 }

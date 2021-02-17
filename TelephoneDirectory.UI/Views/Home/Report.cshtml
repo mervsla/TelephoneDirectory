@@ -1,0 +1,137 @@
+﻿
+<div class="container">
+
+    <div class="m-3">
+        <div class="row shadow-sm p-3 mb-3 bg-secondary text-white rounded">
+            <div class="col-md-9">
+                <p class="font-weight-bold"> REPORTS</p>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-dark" id="createReport">
+                    Create Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table-responsive">
+
+
+        <div id="locationCount"></div>
+        <div id="personCount"></div>
+        <div id="pName"></div>
+
+
+        <table id="reportTable" class="table table-hover">
+            <thead>
+                <tr>
+
+                    <th>Location</th>
+                    <th>Person Count</th>
+                    <th>Phone Count</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+        crossorigin="anonymous"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44311/userservice/getallreports",
+            datatype: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#reportTable").DataTable({
+
+                    data: data,
+                    "columns": [
+                        { data: "location", "autoWidth": true },
+                        { data: "personCount", "autoWidth": true },
+                        { data: "phoneCount", "autoWidth": true },
+
+                        {
+                            "render": function (data, type, row) {
+                                return "<a class='btn btn-primary' onclick=ShowDetails('" + row.id + "')   data-toggle='modal' data-target='#showContactModal'>Details</a>";
+                            }
+                        }
+
+                        ,
+                        {
+                            "render": function (data, type, row) {
+                                return "<a class='btn btn-primary' onclick=DeleteReport('" + row.id + "')   data-toggle='modal' data-target='#showContactModal'>Delete</a>";
+                            }
+                        }
+
+
+                    ]
+
+                });
+            }
+        });
+
+
+
+
+
+
+    });
+
+
+
+
+    $("#createReport").click(function () {
+
+        var Address = "İstanbul";
+
+        $.ajax({
+            type: "POST",
+            url: "https://localhost:44311/userservice/createReport",
+            datatype: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ 'Address': Address }),
+            success: function (data) {
+                var c = data.location;
+                var a = data.userCount;
+                var b = data.phoneCount;
+                
+                document.getElementById('locationCount').innerHTML = a;
+                document.getElementById('personCount').innerHTML = b;
+                document.getElementById('pName').innerHTML = c;
+
+            }
+
+        });
+    });
+
+
+
+
+
+
+
+</script>

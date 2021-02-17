@@ -41,7 +41,6 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
            
         }
 
-
         public void DeleteContact(ContactDto contactDto)
         {
             contactManager.DeleteContact(contactDto.ID);
@@ -64,6 +63,19 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
         {
             return contactManager.getAllContactsById(contactDto.UserID);
         }
+
+        [HttpPost]
+        public ReportDto CreateReport(ContactDto contactDto)
+        {
+            List<int> counts = contactManager.PersonPhoneCount(contactDto.Address);
+            ReportDto reportDto = new ReportDto();
+            reportDto.Location = contactDto.Address;
+            reportDto.UserCount = counts[0];
+            reportDto.PhoneCount = counts[1];
+
+            return reportDto;
+        }
+
 
     }
 }

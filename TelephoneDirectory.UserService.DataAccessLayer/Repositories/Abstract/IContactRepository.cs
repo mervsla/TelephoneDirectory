@@ -13,5 +13,7 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Abstract
         void DeleteContact(Contact contact);
         List<Contact> getAllContacts();
         List<Contact> GetAllContactsById(Guid userId);
+
+        List<int> PersonPhoneCount(string address);
     }
 }

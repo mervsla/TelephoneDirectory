@@ -10,8 +10,8 @@ using TelephoneDirectory.UserService.DataAccessLayer.USContext;
 namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
 {
     [DbContext(typeof(UserServiceContext))]
-    [Migration("20210215104321_UserServiceContextMig")]
-    partial class UserServiceContextMig
+    [Migration("20210217153020_UsContextDB")]
+    partial class UsContextDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

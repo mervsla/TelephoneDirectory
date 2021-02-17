@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace TelephoneDirectory.UserService.DataAccessLayer.Migrations
 {
-    public partial class UserServiceContextMig : Migration
+    public partial class UsContextDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

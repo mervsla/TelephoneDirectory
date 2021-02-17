@@ -68,11 +68,9 @@
                         <th></th>
                         <th></th>
                         <th></th>
-
                     </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
             </table>
 
@@ -86,7 +84,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Add Contact Information</h4>
-                        <button type="button"  class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
@@ -106,7 +104,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
 
@@ -164,8 +161,10 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
+
+                         <div id="personId" style="visibility:hidden"></div>
                         <button type="button" class="btn btn-primary" id="AddContactBtn" data-dismiss="modal">Add</button>
-                        <div id="personId" style="visibility:hidden"></div>
+                       
                     </div>
 
                 </div>
@@ -194,7 +193,7 @@
 
         $.ajax({
             type: "GET",
-            url: "https://localhost:44394/userservice/getalluserscontacts",
+            url: "https://localhost:44311/userservice/getalluserscontacts",
             datatype: "json",
             contentType: "application/json; charset=utf-8",
             success: function (data) {
@@ -218,6 +217,7 @@
                             }
                         }
                         ,
+
                         {
                             "render": function (data, type, row) {
                                 return "<a  class='btn btn-danger' onclick=DeletePerson('" + row.userID + "')>Delete Person</a > ";
@@ -236,10 +236,10 @@
             var Email = $("#email").val();
             var Address = $("#address").val();
             var UserID = document.getElementById("personId").innerHTML;
-          
+
             $.ajax({
                 type: "POST",
-                url: "https://localhost:44394/userservice/addcontact",
+                url: "https://localhost:44311/userservice/addcontact",
                 dataType: "JSON",
                 contentType: "application/json; charset-utf-8",
                 data: JSON.stringify({ 'PhoneNumber': PhoneNumber, 'Email': Email, 'Address': Address, 'UserID': UserID }),
@@ -258,14 +258,14 @@
 
             $.ajax({
                 type: "POST",
-                url: "https://localhost:44394/userservice/adduser",
+                url: "https://localhost:44311/userservice/adduser",
                 dataType: "JSON",
                 contentType: "application/json; charset-utf-8",
                 data: JSON.stringify({ 'Name': Name, 'Surname': Surname, 'CompanyName': CompanyName }),
                 success: function (data) {
 
                     window.location.reload();
-                    
+
                 }
             });
         });
@@ -285,18 +285,18 @@
 
     function AddPerson(id) {
         document.getElementById('personId').innerHTML = id;
-        
+
     }
 
     function GetContact(userId) {
         $.ajax({
             type: "POST",
-            url: "https://localhost:44394/userservice/getcontact",
+            url: "https://localhost:44311/userservice/getcontact",
             datatype: "json",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ 'UserID': userId }),
             success: function (data) {
-                
+
                 if (data != null) {
                     $("#contactTable").DataTable({
 
@@ -312,13 +312,13 @@
                                     return "<a  class='btn btn-danger' onclick=DeleteContact('" + row.id + "')>Delete</a > ";
                                 }
                             }
-                           
+
 
                         ]
 
                     });
                 }
-                
+
             }
         });
 
@@ -327,7 +327,7 @@
     function DeletePerson(userId) {
         $.ajax({
             type: "POST",
-            url: "https://localhost:44394/userservice/deleteuser",
+            url: "https://localhost:44311/userservice/deleteuser",
             datatype: "json",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ 'UserID': userId }),
@@ -339,10 +339,10 @@
 
     function DeleteContact(id) {
         var ID = Number(id);
-        
+
         $.ajax({
             type: "POST",
-            url: "https://localhost:44394/userservice/deletecontact",
+            url: "https://localhost:44311/userservice/deletecontact",
             datatype: "json",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ 'ID': ID }),
@@ -352,7 +352,6 @@
         });
 
     }
- 
 
 
 
