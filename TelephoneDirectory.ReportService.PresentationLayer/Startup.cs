@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TelephoneDirectory.ReportService.BusinessLayer.Managers;
 
 namespace TelephoneDirectory.ReportService.PresentationLayer
 {
@@ -27,17 +26,6 @@ namespace TelephoneDirectory.ReportService.PresentationLayer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .SetIsOriginAllowed((host) => true)
-                    .AllowCredentials());
-            });
-
-            services.AddScoped<IReportManager, ReportManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +35,6 @@ namespace TelephoneDirectory.ReportService.PresentationLayer
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 
@@ -57,9 +44,7 @@ namespace TelephoneDirectory.ReportService.PresentationLayer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                   name: "default",
-                   pattern: "{controller=Report}/{action=AddReport}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
