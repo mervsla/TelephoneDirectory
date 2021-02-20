@@ -135,7 +135,7 @@ function GetContact(userId) {
 
 function DeletePerson(userId) {
     $.ajax({
-        type: "POST",
+        type: "DELETE",
         url: "https://localhost:44311/api/userservice/userservice/deleteuser",
         datatype: "json",
         contentType: "application/json; charset=utf-8",

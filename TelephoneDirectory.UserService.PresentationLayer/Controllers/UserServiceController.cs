@@ -33,7 +33,7 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
             userDto.UserID = guid;
             userManager.AddUser(userDto);
         }
-        [HttpPost]
+        [HttpDelete]
         public void DeleteUser(UserDto userDto)
         {
             contactManager.DeleteContactByUserId(userDto.UserID);

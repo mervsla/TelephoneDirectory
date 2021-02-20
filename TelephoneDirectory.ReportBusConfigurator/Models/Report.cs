@@ -6,7 +6,7 @@ using TelephoneDirectory.ReportService.DataAccessLayer.Entitites;
 namespace TelephoneDirectory.ReportBusConfigurator.Models
 {
 
-    public class Report : IReportProducer, IReportConsumer
+    public class Report : IReportConsumer
     {
      public Guid ID { get; set; }
      public string ReportName { get; set; }

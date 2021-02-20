@@ -26,18 +26,9 @@ namespace TelephoneDirectory.UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Report()
+        public IActionResult Report()
         {
-            var bus = BusConfigurator.ConfigureBus(factory =>
-            {
-                factory.ReceiveEndpoint(RabbitMqConstants.ProducerQueue, endpoint =>
-                {
-                    endpoint.Consumer<ReportProducer>();
-                });
-            });
-
-            await bus.StartAsync();
-
+            
             return View();
 
         }

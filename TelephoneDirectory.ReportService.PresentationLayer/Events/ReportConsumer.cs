@@ -46,7 +46,6 @@ namespace TelephoneDirectory.ReportService.PresentationLayer.Events
                     request.AddParameter("application/json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
                     IRestResponse response = client.Execute(request);
                     var responsedata = JsonConvert.DeserializeObject<ReportInfoFromUserDto>(response.Content);
-
                     report.PhoneCount = responsedata.PhoneCount;
                     report.PersonCount = responsedata.UserCount;
                     report.status = DataAccessLayer.Entitites.ReportEnum.Completed;

@@ -11,6 +11,5 @@ namespace TelephoneDirectory.ReportBusConfigurator
         public const string Username = "guest";
         public const string Password = "guest";
         public const string ConsumerQueue = "receiver";
-        public const string ProducerQueue = "sender";
     }
 }
