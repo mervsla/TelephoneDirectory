@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TelephoneDirectory.UI.Hubs;
 
 namespace TelephoneDirectory.UI
 {
@@ -24,6 +25,7 @@ namespace TelephoneDirectory.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSignalR();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -58,6 +60,7 @@ namespace TelephoneDirectory.UI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<UIHub>("/UIHub");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

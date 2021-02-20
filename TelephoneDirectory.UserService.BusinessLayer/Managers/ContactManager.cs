@@ -18,7 +18,7 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
             contact.UserID = contactDto.UserID;
             contact.PhoneNumber = contactDto.PhoneNumber;
             contact.Email = contactDto.Email;
-            contact.Address = contactDto.Address;
+            contact.Address = contactDto.Address.ToUpper();
 
             return contact;
         }

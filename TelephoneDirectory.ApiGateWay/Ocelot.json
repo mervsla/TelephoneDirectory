@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +9,7 @@
           "Port": 63113
         }
       ],
-      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamPathTemplate": "/api/userService/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
 
     },
@@ -22,7 +22,7 @@
           "Port": 61377
         }
       ],
-      "UpstreamPathTemplate": "/report/{everything}",
+      "UpstreamPathTemplate": "/api/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
 
     }

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TelephoneDirectory.ReportService.BusinessLayer.Managers;
 
 namespace TelephoneDirectory.ReportService.PresentationLayer
 {
@@ -25,7 +26,18 @@ namespace TelephoneDirectory.ReportService.PresentationLayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(options => options.EnableEndpointRouting = false).AddControllersAsServices();
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials());
+            });
+            services.AddScoped<IReportManager, ReportManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,13 +47,11 @@ namespace TelephoneDirectory.ReportService.PresentationLayer
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("CorsPolicy");
 
-            app.UseHttpsRedirection();
+            app.UseMvc();
 
             app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -8,7 +8,7 @@ using TelephoneDirectory.UserService.BusinessLayer.Managers;
 
 namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserServiceController : Controller
     {
