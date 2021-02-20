@@ -28,7 +28,7 @@ namespace TelephoneDirectory.ReportService.PresentationLayer
         {
             Guid ID = Guid.NewGuid();
             reportDto.ID = ID;
-            reportDto.ReportName = reportDto.Location.ToUpper() + " REPORT";
+            reportDto.ReportName = reportDto.ReportName;
             reportDto.RequestedDate = DateTime.Now;
             reportDto.Location = reportDto.Location.ToUpper();
 

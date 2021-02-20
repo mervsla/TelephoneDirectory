@@ -18,7 +18,8 @@ $(document).ready(function () {
                     { data: "personCount", "autoWidth": true },
                     { data: "phoneCount", "autoWidth": true },
                     { data: "createdDate", "autoWidth": true },
-                    { data: "status", "autoWidth": true},
+                    { data: "status", "autoWidth": true },
+                   
                     {
                         "render": function (data, type, row) {
                             return "<a class='btn btn-primary' onclick=DeleteReport('" + row.id + "')>Delete</a>";
@@ -36,16 +37,18 @@ $(document).ready(function () {
 
     $("#addnewreport").click(function () {
         var Location = $('#reportLocation').val();
+        var ReportName = $('#reportName').val();
 
         $.ajax({
             type: "POST",
             url: "https://localhost:44311/api/report/addnewreport",
             datatype: "json",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ 'Location': Location }),
+            data: JSON.stringify({
+                'Location': Location, 'ReportName': ReportName }),
             success: function (data) {
-                
-            window.location.reload();
+
+                window.location.reload();
             }
         });
     });
@@ -55,7 +58,6 @@ $(document).ready(function () {
 
 
 });
-
 
 
 function DeleteReport(id) {

@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var userid;
+
+$(document).ready(function () {
 
     $.ajax({
         type: "GET",
@@ -22,7 +24,7 @@
                     ,
                     {
                         "render": function (data, type, row) {
-                            return "<a class='btn btn-primary' onclick=AddPerson('" + row.userID + "')  data-toggle='modal' data-target='#addContactModal'>Add Contact Info</a>";
+                            return "<a class='btn btn-primary' onclick=GetUserId('" + row.userID + "')  data-toggle='modal' data-target='#addContactModal'>Add Contact Info</a>";
                         }
                     }
                     ,
@@ -44,7 +46,7 @@
         var PhoneNumber = $("#phoneNumber").val();
         var Email = $("#email").val();
         var Address = $("#address").val();
-        var UserID = document.getElementById("personId").innerHTML;
+        var UserID = userid;
 
         $.ajax({
             type: "POST",
@@ -92,9 +94,8 @@
 
 
 
-function AddPerson(id) {
-    document.getElementById('personId').innerHTML = id;
-
+function GetUserId(id) {
+    userid = id;
 }
 
 function GetContact(userId) {
