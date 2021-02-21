@@ -8,7 +8,7 @@ using TelephoneDirectory.UserService.BusinessLayer.Managers;
 
 namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserServiceController : Controller
     {
@@ -33,14 +33,13 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
             userDto.UserID = guid;
             userManager.AddUser(userDto);
         }
-        [HttpPost]
+        [HttpDelete]
         public void DeleteUser(UserDto userDto)
         {
             contactManager.DeleteContactByUserId(userDto.UserID);
             userManager.DeleteUser(userDto.UserID);
            
         }
-
 
         public void DeleteContact(ContactDto contactDto)
         {
@@ -64,6 +63,19 @@ namespace TelephoneDirectory.UserService.PresentationLayer.Controllers
         {
             return contactManager.getAllContactsById(contactDto.UserID);
         }
+
+        [HttpPost]
+        public ReportDto CreateReport(ContactDto contactDto)
+        {
+            List<int> counts = contactManager.PersonPhoneCount(contactDto.Address);
+            ReportDto reportDto = new ReportDto();
+            reportDto.Location = contactDto.Address;
+            reportDto.UserCount = counts[0];
+            reportDto.PhoneCount = counts[1];
+
+            return reportDto;
+        }
+
 
     }
 }

@@ -1,0 +1,67 @@
+﻿
+
+<div class="container">
+
+    <div class="m-3">
+        <div class="row shadow-sm p-3 mb-3 bg-secondary text-white rounded">
+            <div class="col-md-6">
+                <p class="font-weight-bold"> REPORTS</p>
+            </div>
+            <div class="col-md-6">
+
+                <div class="input-group">
+                    <input type="text" class="form-control ml-2" id="reportLocation" placeholder="Report Location">
+                    <input type="text" class="form-control" id="reportName" placeholder="Report Name">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" id="addnewreport" type="button">Get Report</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="table-responsive">
+
+        <table id="reportTable" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Report Name</th>
+                    <th>Location</th>
+                    <th>Person Count</th>
+                    <th>Phone Count</th>
+                    <th>Created Date</th>
+                    <th>State</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+        crossorigin="anonymous"></script>
+
+
+<script src="~/js/report.js"></script>
+
+
+

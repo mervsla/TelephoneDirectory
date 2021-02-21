@@ -5,6 +5,7 @@ using System.Text;
 using TelephoneDirectory.ReportService.DataAccessLayer.Repositories.Abstract;
 using TelephoneDirectory.ReportService.DataAccessLayer.RSContext;
 using TelephoneDirectory.ReportService.DataAccessLayer.Entitites;
+using System.Linq;
 
 namespace TelephoneDirectory.ReportService.DataAccessLayer.Repositories.Concrete
 {
@@ -24,6 +25,22 @@ namespace TelephoneDirectory.ReportService.DataAccessLayer.Repositories.Concrete
             _rcontext.SaveChanges();
         }
 
-      
+
+        public List<Report> GetReports()
+        {
+           return _rcontext.Reports.ToList();
+        }
+
+        public Report GetReportById(Guid id)
+        {
+            return _rcontext.Reports.FirstOrDefault(x => x.ID == id);
+        }
+        public void DeleteReport(Report report)
+        {
+            _rcontext.Reports.Remove(report);
+            _rcontext.SaveChanges();
+        }
+
+
     }
 }

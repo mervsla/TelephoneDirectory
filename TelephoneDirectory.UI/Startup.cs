@@ -24,6 +24,7 @@ namespace TelephoneDirectory.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+          
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -62,6 +63,8 @@ namespace TelephoneDirectory.UI
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }

@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using TelephoneDirectory.ReportBusConfigurator;
+using TelephoneDirectory.ReportService.PresentationLayer.Events;
 using TelephoneDirectory.UI.Models;
 
 namespace TelephoneDirectory.UI.Controllers
@@ -22,6 +25,14 @@ namespace TelephoneDirectory.UI.Controllers
         {
             return View();
         }
+
+        public IActionResult Report()
+        {
+            
+            return View();
+
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

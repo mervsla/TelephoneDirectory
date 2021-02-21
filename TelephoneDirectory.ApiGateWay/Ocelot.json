@@ -9,7 +9,7 @@
           "Port": 63113
         }
       ],
-      "UpstreamPathTemplate": "/api/{everything}",
+      "UpstreamPathTemplate": "/api/userService/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
 
     },
@@ -22,13 +22,13 @@
           "Port": 61377
         }
       ],
-      "UpstreamPathTemplate": "/api/report/{everything}",
+      "UpstreamPathTemplate": "/api/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
 
     }
   ],
 
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:61143/"
+    "BaseUrl": "http://localhost:61143"
   }
 }

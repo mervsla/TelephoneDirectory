@@ -12,5 +12,6 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
         void DeleteContactByUserId(Guid userId);
         ContactDto getContactByUserId(Guid userId);
         List<ContactDto> getAllContactsById(Guid userId);
+        List<int> PersonPhoneCount(string address);
     }
 }

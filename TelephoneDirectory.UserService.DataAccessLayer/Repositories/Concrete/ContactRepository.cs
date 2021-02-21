@@ -53,5 +53,20 @@ namespace TelephoneDirectory.UserService.DataAccessLayer.Repositories.Concrete
         {
             return _ccontext.Contacts.ToList();
         }
+
+
+        public List<int> PersonPhoneCount(string address)
+        {
+            List<int> counts = new List<int>();
+
+            int userCount= _context.Contacts.Where(x => x.Address == address).Select(x => x.UserID).ToList().Distinct().Count();
+            counts.Add(userCount);
+
+            int phoneCount = _context.Contacts.Where(x => x.Address == address).Select(x => x.PhoneNumber).ToList().Count();
+            counts.Add(phoneCount);
+
+            return counts;
+        }
+
     }
 }

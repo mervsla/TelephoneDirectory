@@ -18,7 +18,7 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
             contact.UserID = contactDto.UserID;
             contact.PhoneNumber = contactDto.PhoneNumber;
             contact.Email = contactDto.Email;
-            contact.Address = contactDto.Address;
+            contact.Address = contactDto.Address.ToUpper();
 
             return contact;
         }
@@ -87,6 +87,14 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
             uow.ContactRepository.DeleteContact(contact);
             uow.Save();
         }
+
+
+
+        public List<int> PersonPhoneCount(string address)
+        {
+           return uow.ContactRepository.PersonPhoneCount(address);
+        }
+
 
     }
 }

@@ -11,7 +11,7 @@ namespace TelephoneDirectory.ReportService.DataAccessLayer.Entitites
         public string Location { get; set; }
         public int PersonCount { get; set; }
         public int PhoneCount { get; set; }
-        public DateTime RequestedDate { get; set; } = DateTime.Now;
+        public DateTime RequestedDate { get; set; } 
 
         public ReportEnum status { get; set; }
     }
