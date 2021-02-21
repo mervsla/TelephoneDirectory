@@ -13,6 +13,8 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
     {
         UnitOfWork uow = new UnitOfWork(new UserServiceContext());
 
+
+
         public User ConvertToUser(UserDto userDto)
         {
             User user = new User();
@@ -50,13 +52,11 @@ namespace TelephoneDirectory.UserService.BusinessLayer.Managers
 
             var contactsDtos = uow.ContactRepository.getAllContacts().Where(x => usersIDs.Contains(x.UserID)).Select(y => new ContactDto
             {
-                
                 ID = y.ID,
                 Email = y.Email,
                 PhoneNumber = y.PhoneNumber,
                 Address = y.Address,
                 UserID = y.UserID
-
 
             }).ToList();
 
